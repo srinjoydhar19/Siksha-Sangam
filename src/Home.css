@@ -1,0 +1,98 @@
+h1 {
+  color: rgb(6, 254, 241);
+}
+
+.glass-box {
+  height: 400px;
+  width: 1000px;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* Added to align the table below the existing content */
+  align-items: center;
+  justify-content: center; /* Added to vertically center the image */
+  position: relative;
+  overflow: hidden; /* Ensures the shine effect stays within the box */
+}
+
+.glass-box p {
+  color: cyan;
+}
+
+.glass-image {
+  width: 200px; /* Adjust the width as needed */
+  height: 200px; /* Adjust the height as needed */
+}
+
+.glass-box::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.1)
+  );
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.glass-box::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to top right,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0)
+  );
+  transform: rotate(45deg);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  animation: glass-shine 5s infinite;
+}
+
+.glass-box:hover::before,
+.glass-box:hover::after {
+  opacity: 1;
+}
+
+@keyframes glass-shine {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th,
+table td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f2f2f2;
+}
